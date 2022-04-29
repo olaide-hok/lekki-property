@@ -1,11 +1,12 @@
 import React from 'react'
+import { Col, Form } from 'react-bootstrap'
 
 function Input({label, name, inputType, value, placeholder, handleInputChange}) {
     return (
-        <div>
-            <label className='label' htmlFor={label}> {label} </label>
+        <Col sm={12}>
+            <Form.Label htmlFor={label}> {label} </Form.Label>
 
-            <input
+            <Form.Control
                 name={name}
                 id={name}
                 type={inputType}
@@ -13,7 +14,7 @@ function Input({label, name, inputType, value, placeholder, handleInputChange}) 
                 onChange={handleInputChange}
                 placeholder={placeholder}
             />
-        </div>
+        </Col>
     )
 }
 
