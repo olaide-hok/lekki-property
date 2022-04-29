@@ -39,7 +39,7 @@ function Addproperty() {
 
   return (
     <>
-    <Container className='my-4 align-items-center justify-content-center'>    
+    <Container className='my-4 mx-auto align-items-center justify-content-center'>    
       <Row onSubmit={handleSubmit} className=''>
         <Input
           name='propertyAddress'

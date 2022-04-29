@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 
 const LEKKI_API_URL = 'https://sfc-lekki-property.herokuapp.com/api/v1/lekki/property'
 

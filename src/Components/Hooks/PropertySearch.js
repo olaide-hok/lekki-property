@@ -1,8 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
-import Input from '../Layouts/Input'
-import { Container } from 'react-bootstrap'
+import Container  from 'react-bootstrap/Container'
 
 function PropertySearch({ params, onParamChange}) {
   return (
