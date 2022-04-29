@@ -24,7 +24,7 @@ function PropertyInfo({ property }) {
 
                             <Card.Text>
                                 <Button 
-                                    variant='primary'
+                                    variant='secondary'
                                     onClick={() =>setOpen(prevOpen => !prevOpen)}
                                 >
                                     {open ? 'Hide Details' : 'View Details'}                                
