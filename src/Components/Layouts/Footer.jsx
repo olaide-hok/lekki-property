@@ -6,11 +6,11 @@ import Navbar from 'react-bootstrap/Navbar'
 function Footer() {
   const footerYear = new Date().getFullYear()
   return (
-    <Navbar bg="dark" variant="dark">
-      <Container className='text-center'>
-        <p className='text-white'>Copyright &copy; {footerYear} Lekki Property Inc. All rights reserved.</p>
-      </Container>
-    </Navbar>
+    
+      <footer className='bg-dark justify-content-center text-white p-4 bg-gradient'>
+        <p className='text-center'>Copyright &copy; {footerYear} Lekki Property Inc. All rights reserved.</p>
+      </footer>
+    
 
   )
 }

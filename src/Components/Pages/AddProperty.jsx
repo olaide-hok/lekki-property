@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import Button from '../Layouts/Button';
+import { Container, Row } from 'react-bootstrap';
+import FormButton from '../Layouts/FormButton';
 import Input from '../Layouts/Input'
 
 function Addproperty() {
@@ -38,7 +39,8 @@ function Addproperty() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+    <Container className='my-4 align-items-center justify-content-center'>    
+      <Row onSubmit={handleSubmit} className=''>
         <Input
           name='propertyAddress'
           label='Property Address'
@@ -51,7 +53,7 @@ function Addproperty() {
 
         <Input
           name='propertyType'
-          label='Property Address'
+          label='Property Type'
           inputType='text'
           value={inputValue.propertyType}
           placeholder='Enter Property Type eg. Flat, House etc'
@@ -60,7 +62,7 @@ function Addproperty() {
 
         <Input
           name='numOfBedroom'
-          label='Number of Bedrooms'
+          label='Bedrooms'
           inputType='number'
           value={inputValue.numOfBedroom}
           placeholder='Enter Number of Bedrooms'
@@ -69,7 +71,7 @@ function Addproperty() {
 
         <Input
           name='numOfSittingRoom'
-          label='Number of Sitting Room'
+          label='Sitting Room'
           inputType='number'
           value={inputValue.numOfSittingRoom}
           placeholder='Enter Number of Sitting Room'
@@ -78,7 +80,7 @@ function Addproperty() {
 
         <Input
           name='numOfKitchen'
-          label='Number Of Ktchen'
+          label='Ktchen'
           inputType='number'
           value={inputValue.numOfKitchen}
           placeholder='Enter Number of Kitchen'
@@ -87,7 +89,7 @@ function Addproperty() {
 
         <Input
           name='numOfBathroom'
-          label='Number of Bathroom'
+          label='Bathroom'
           inputType='number'
           value={inputValue.numOfBathroom}
           placeholder='Enter Number of Bathroom'
@@ -96,7 +98,7 @@ function Addproperty() {
 
         <Input
           name='numOfToilets'
-          label='Number of Toilets'
+          label='Toilets'
           inputType='number'
           value={inputValue.numOfToilets}
           placeholder='Enter Number of Toilets'
@@ -139,9 +141,10 @@ function Addproperty() {
           required
         />
 
-        <div>
-          <label htmlFor="images">Upload Property Image</label>
+        <div className='my-3'>
+          <label htmlFor="images" className='form-label'>Upload Property Image</label>
           <input
+          className='form-control'
           name='images'
           type='file'
           onChange={handleInputChange}
@@ -151,21 +154,11 @@ function Addproperty() {
         />
         </div>
         
-        <Button type={"submit"} label={"Add Property"} />
-      </form>
+        <FormButton type={"submit"} label={"Add Property"} />
+      </Row>
+      </Container>
     </>
   )
 }
 
 export default Addproperty
-
-//   < input
-// type = "file"
-// className = "formInputFile"
-// id = 'images'
-// onChange = { onMutate }
-// max = '6'
-// accept = '.jpg,.png,.jpeg'
-// multiple
-// required
-//   />

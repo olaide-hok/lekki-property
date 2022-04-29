@@ -13,8 +13,8 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<Home />}  />
-          <Route path='/addproperty' element={<AddProperty />}  />
-          <Route path='/listproperty' element={<ListProperty />}  />
+          <Route path='addproperty' element={<AddProperty />}  />
+          <Route path='listproperty' element={<ListProperty />}  />
 
         </Routes>
         <Footer />

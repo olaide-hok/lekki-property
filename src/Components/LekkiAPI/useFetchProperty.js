@@ -6,7 +6,7 @@ const LEKKI_API_URL = 'https://sfc-lekki-property.herokuapp.com/api/v1/lekki/pro
 const ACTIONS = {
     GET_PROPERTIES: 'get-properties',
     SET_LOADING: 'set-loading',
-    ERROR: 'error'
+    ERROR: 'error',
 }
 
 function reducer(state, action) {
@@ -35,7 +35,7 @@ function reducer(state, action) {
         
 }
 
-function useFetchProperty(params, page) {
+function useFetchProperty(params) {
 
     const [state, dispatch] = useReducer(reducer, {
         properties: [],
@@ -50,8 +50,7 @@ function useFetchProperty(params, page) {
         axios.get(LEKKI_API_URL, {
             cancelToken: cancelToken.token,
             params: {
-                ...params,
-                page: page
+                ...params
             }
         })
         .then(res => {
@@ -68,11 +67,14 @@ function useFetchProperty(params, page) {
             })
         })
 
-    }, [params, page])
+        
+        return () => {
+            cancelToken.cancel()
+        }
 
-  return (
-    state
-  )
+    }, [params])
+
+  return state
 }
 
 export default useFetchProperty;
