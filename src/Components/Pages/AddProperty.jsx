@@ -16,7 +16,8 @@ function Addproperty() {
       propertyOwner: '',
       propertyDescription: '',
       validFrom: '',
-      validTo: ''
+      validTo: '',
+      images: {}
     }
   )
 
@@ -137,6 +138,19 @@ function Addproperty() {
           placeholder='Valid To'
           required
         />
+
+        <div>
+          <label htmlFor="images">Upload Property Image</label>
+          <input
+          name='images'
+          type='file'
+          onChange={handleInputChange}
+          accept='.jpg,.png,.jpeg'
+          multiple
+          required
+        />
+        </div>
+        
         <Button type={"submit"} label={"Add Property"} />
       </form>
     </>
@@ -144,3 +158,14 @@ function Addproperty() {
 }
 
 export default Addproperty
+
+//   < input
+// type = "file"
+// className = "formInputFile"
+// id = 'images'
+// onChange = { onMutate }
+// max = '6'
+// accept = '.jpg,.png,.jpeg'
+// multiple
+// required
+//   />

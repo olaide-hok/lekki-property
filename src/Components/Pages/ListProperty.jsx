@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Container from 'react-bootstrap/Container'
 import useFetchProperty from '../LekkiAPI/useFetchProperty'
 import PropertyInfo from './PropertyInfo'
 
@@ -11,19 +12,19 @@ function ListProperty() {
 
     return (
         <>
-            <div>List of Properties</div>
-            {loading && <h1>Loading ...</h1> }
-            {error && <h1>Error. Try Refreshing.</h1> }
-            {
-                properties.map((property, index) => {
-                    return <PropertyInfo
-                                key={index}
-                                property={property}
-                            />
-                })
-            }
-
-
+            <Container className='my-4'>
+                <h1>List of Properties</h1>
+                {loading && <h1>Loading ...</h1>}
+                {error && <h1>Error. Try Refreshing.</h1>}
+                {
+                    properties.map((property, index) => {
+                        return <PropertyInfo
+                            key={index}
+                            property={property}
+                        />
+                    })
+                }
+            </Container>
 
         </>
     )
