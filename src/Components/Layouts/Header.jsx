@@ -13,7 +13,9 @@ function Header() {
         <Navbar.Brand > <h1>Lekki Property Inc. </h1> </Navbar.Brand>
         <Nav className="me-2 justify-content-end">
           
-            <Link to='/' className='text-white text-decoration-none'>Home</Link>
+            <Link to='/'>
+              <button className='btn btn-light px-4'>Home</button>
+            </Link>
         </Nav>
       </Container>
     </Navbar>
