@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import Container from 'react-bootstrap/Container'
+import React, { useEffect, useState } from 'react'
+import { Container } from 'react-bootstrap'
 import PropertySearch from '../Hooks/PropertySearch'
 import useFetchProperty from '../LekkiAPI/useFetchProperty'
 import PropertyInfo from './PropertyInfo'
+import api from '../LekkiAPI/api'
 
 function ListProperty() {
     const [params, setParams] = useState({})
@@ -18,9 +19,25 @@ function ListProperty() {
         })
     }
 
+    // useEffect(() => {
+    //     const fetchProperties = async () => {
+            
+    //         try {
+    //             const response = await api.get('/v1/lekki/property')
+    //             console.log(response.data.data);
+                
+    //         } catch (error) {
+    //             console.log(error.message);
+    //             console.log(error.response.status);
+    //         }
+    //     }
+
+    //     fetchProperties();
+    // }, [])
+
     return (
         <>
-            <Container className='my-4'>
+            <Container className=''>
                 <h1>List of Properties</h1>
                 <PropertySearch params={params} onParamChange={handleParamChange} />
                 {loading && <h1>Loading ...</h1>}
@@ -33,7 +50,6 @@ function ListProperty() {
                         />
                     })
                 }
-                {/* <PropertyPagination page={page} setPage={setPage} hasnextPage={hasNextPage}  /> */}
             </Container>
 
         </>

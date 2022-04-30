@@ -11,8 +11,7 @@ function PropertyInfo({ property }) {
     const [open, setOpen] = useState(false)
     return (
 
-        <Row xs={1} md={2} className="g-4">
-            {(
+            <Row lg={{cols:2}} className="g-2">
                 <Col>
                     <Card className='mb-3'>
                         <Card.Img variant="" src="" />
@@ -42,8 +41,7 @@ function PropertyInfo({ property }) {
                         </Card.Body>
                     </Card>
                 </Col>
-            )}
-        </Row>
+            </Row>
     )
 }
 

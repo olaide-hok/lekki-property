@@ -1,5 +1,8 @@
 import axios from 'axios'
-import { useEffect, useReducer } from 'react'
+import {
+    useEffect,
+    useReducer
+} from 'react'
 
 const LEKKI_API_URL = 'https://sfc-lekki-property.herokuapp.com/api/v1/lekki/property'
 
@@ -15,24 +18,24 @@ function reducer(state, action) {
             return {
                 ...state,
                 loading: false,
-                properties: action.payload.properties
+                    properties: action.payload.properties
             }
         case ACTIONS.SET_LOADING:
             return {
                 loading: true,
-                properties: [],
+                    properties: [],
             }
         case ACTIONS.ERROR:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
-                properties: []
+                    error: action.payload.error,
+                    properties: []
             }
         default:
             return state;
     }
-        
+
 }
 
 function useFetchProperty(params) {
@@ -43,38 +46,35 @@ function useFetchProperty(params) {
     })
 
     useEffect(() => {
-
-        const cancelToken = axios.CancelToken.source()
-
-        dispatch({ type: ACTIONS.SET_LOADING})
+        dispatch({
+            type: ACTIONS.SET_LOADING
+        })
         axios.get(LEKKI_API_URL, {
-            cancelToken: cancelToken.token,
-            params: {
-                ...params
-            }
-        })
-        .then(res => {
-            dispatch({ 
-                type: ACTIONS.GET_PROPERTIES, 
-                payload:{ properties: res.data.data }
+                params: {
+                    ...params
+                }
             })
-        })
-        .catch(error => {
-            if (axios.isCancel(error)) return
-            dispatch({ 
-                type: ACTIONS.ERROR, 
-                payload:{ error: error }
+            .then(res => {
+                dispatch({
+                    type: ACTIONS.GET_PROPERTIES,
+                    payload: {
+                        properties: res.data.data
+                    }
+                })
             })
-        })
-
-        
-        return () => {
-            cancelToken.cancel()
-        }
+            .catch(error => {
+                if (axios.isCancel(error)) return
+                dispatch({
+                    type: ACTIONS.ERROR,
+                    payload: {
+                        error: error
+                    }
+                })
+            })
 
     }, [params])
 
-  return state
+    return state
 }
 
 export default useFetchProperty;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Container, Row } from 'react-bootstrap';
+import axios from 'axios'
+import { Container, Form, Row } from 'react-bootstrap';
 import FormButton from '../Layouts/FormButton';
 import Input from '../Layouts/Input'
 
@@ -30,16 +31,33 @@ function Addproperty() {
       ...prevInputValue,
       [name]: value
     }))
+
+    console.log(inputValue);
   };
+
+  
+const LEKKI_API_URL = 'https://sfc-lekki-property.herokuapp.com/api/v1/lekki/property'
+
 
   // Handles Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    axios.post(
+      LEKKI_API_URL,
+      inputValue
+      )
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (
     <>
-    <Container className='my-4 mx-auto align-items-center justify-content-center'>    
+    <Form onSubmit={(e) => handleSubmit(e)} className='my-4 mx-auto align-items-center justify-content-center'>    
       <Row onSubmit={handleSubmit} className=''>
         <Input
           name='propertyAddress'
@@ -56,6 +74,7 @@ function Addproperty() {
           label='Property Type'
           inputType='text'
           value={inputValue.propertyType}
+          handleInputChange={handleInputChange}
           placeholder='Enter Property Type eg. Flat, House etc'
           required
         />
@@ -65,6 +84,7 @@ function Addproperty() {
           label='Bedrooms'
           inputType='number'
           value={inputValue.numOfBedroom}
+          handleInputChange={handleInputChange}
           placeholder='Enter Number of Bedrooms'
           required
         />
@@ -74,6 +94,7 @@ function Addproperty() {
           label='Sitting Room'
           inputType='number'
           value={inputValue.numOfSittingRoom}
+          handleInputChange={handleInputChange}
           placeholder='Enter Number of Sitting Room'
           required
         />
@@ -83,6 +104,7 @@ function Addproperty() {
           label='Ktchen'
           inputType='number'
           value={inputValue.numOfKitchen}
+          handleInputChange={handleInputChange}
           placeholder='Enter Number of Kitchen'
           required
         />
@@ -92,6 +114,7 @@ function Addproperty() {
           label='Bathroom'
           inputType='number'
           value={inputValue.numOfBathroom}
+          handleInputChange={handleInputChange}
           placeholder='Enter Number of Bathroom'
           required
         />
@@ -101,6 +124,7 @@ function Addproperty() {
           label='Toilets'
           inputType='number'
           value={inputValue.numOfToilets}
+          handleInputChange={handleInputChange}
           placeholder='Enter Number of Toilets'
           required
         />
@@ -110,6 +134,7 @@ function Addproperty() {
           label='Property Owner'
           inputType='text'
           value={inputValue.propertyOwner}
+          handleInputChange={handleInputChange}
           placeholder='Enter Property Owner'
           required
         />
@@ -119,6 +144,8 @@ function Addproperty() {
           label='Property Description'
           inputType='text'
           value={inputValue.propertyDescription}
+          handleInputChange={handleInputChange}
+
           placeholder='Enter Property Description'
           required
         />
@@ -128,6 +155,7 @@ function Addproperty() {
           label='Valid from'
           inputType='date'
           value={inputValue.validFrom}
+          handleInputChange={handleInputChange}
           placeholder='Valid From'
           required
         />
@@ -137,6 +165,7 @@ function Addproperty() {
           label='Valid To'
           inputType='date'
           value={inputValue.validTo}
+          handleInputChange={handleInputChange}
           placeholder='Valid To'
           required
         />
@@ -156,7 +185,7 @@ function Addproperty() {
         
         <FormButton type={"submit"} label={"Add Property"} />
       </Row>
-      </Container>
+      </Form>
     </>
   )
 }
