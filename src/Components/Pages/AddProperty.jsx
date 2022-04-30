@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Form, Row } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import FormButton from '../Layouts/FormButton';
 import Input from '../Layouts/Input'
 import validateForm from './ValidateForm';
@@ -115,143 +115,148 @@ function Addproperty() {
 
   return (
     <>
-      <Form onSubmit={(e) => handleSubmit(e)} className='my-4 mx-auto align-items-cEnter justify-content-center'>
-        <Row onSubmit={handleSubmit} className=''>
-          <Input
-            name='propertyAddress'
-            label='Property Address'
-            inputType='text'
-            value={inputValue.propertyAddress}
-            handleInputChange={handleInputChange}
-            placeholder='Enter Property Address'
-            required
-            errors={errors}
-          />
-          <Form.Text className='text-danger'>{errors.propertyAddress}</Form.Text>
+      <Form onSubmit={(e) => handleSubmit(e)}>
+        <Row className='my-4 justify-content-sm-center justify-content-center justify-content-md-center'>
 
-          <Input
-            name='propertyType'
-            label='Property Type'
-            inputType='text'
-            value={inputValue.propertyType}
-            handleInputChange={handleInputChange}
-            placeholder='Enter Property Type eg. Flat, House etc'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.propertyType}</Form.Text>
+          <Col sm={8} xs={10} md={6} >
+            <h1>Add Property Details</h1>
 
-          <Input
-            name='numOfBedroom'
-            label='Bedrooms'
-            inputType='number'
-            value={inputValue.numOfBedroom}
-            handleInputChange={handleInputChange}
-            placeholder='Enter Number of Bedrooms'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.numOfBedroom}</Form.Text>
-
-          <Input
-            name='numOfSittingRoom'
-            label='Sitting Room'
-            inputType='number'
-            value={inputValue.numOfSittingRoom}
-            handleInputChange={handleInputChange}
-            placeholder='Enter Number of Sitting Room'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.numOfSittingRoom}</Form.Text>
-
-          <Input
-            name='numOfKitchen'
-            label='Ktchen'
-            inputType='number'
-            value={inputValue.numOfKitchen}
-            handleInputChange={handleInputChange}
-            placeholder='Enter Number of Kitchen'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.numOfKitchen}</Form.Text>
-
-          <Input
-            name='numOfBathroom'
-            label='Bathroom'
-            inputType='number'
-            value={inputValue.numOfBathroom}
-            handleInputChange={handleInputChange}
-            placeholder='Enter Number of Bathroom'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.numOfBathroom}</Form.Text>
-
-          <Input
-            name='numOfToilets'
-            label='Toilets'
-            inputType='number'
-            value={inputValue.numOfToilets}
-            handleInputChange={handleInputChange}
-            placeholder='Enter Number of Toilets'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.numOfToilets}</Form.Text>
-
-          <Input
-            name='propertyOwner'
-            label='Property Owner'
-            inputType='text'
-            value={inputValue.propertyOwner}
-            handleInputChange={handleInputChange}
-            placeholder='Enter Property Owner'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.propertyOwner}</Form.Text>
-
-          <Input
-            name='propertyDescription'
-            label='Property Description'
-            inputType='text'
-            value={inputValue.propertyDescription}
-            handleInputChange={handleInputChange}
-            placeholder='Enter Property Description'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.propertyDescription}</Form.Text>
-
-          <Input
-            name='validFrom'
-            label='Valid From'
-            inputType='date'
-            value={inputValue.validFrom}
-            handleInputChange={handleInputChange}
-            placeholder='Valid From'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.validFrom}</Form.Text>
-
-          <Input
-            name='validTo'
-            label='Valid To'
-            inputType='date'
-            value={inputValue.validTo}
-            handleInputChange={handleInputChange}
-            placeholder='Valid To'
-            required
-          />
-          <Form.Text className='text-danger'>{errors.validTo}</Form.Text>
-
-          <div className='my-3'>
-            <label htmlFor="images" className='form-label'>Upload Property Image</label>
-            <input
-              className='form-control'
-              name='images'
-              type='file'
-              onChange={handleInputChange}
-              accept='.jpg,.png,.jpeg'
-              multiple
+            <Input
+              name='propertyAddress'
+              label='Property Address'
+              inputType='text'
+              value={inputValue.propertyAddress}
+              handleInputChange={handleInputChange}
+              placeholder='Enter Property Address'
+              required
+              errors={errors}
             />
-          </div>
+            <Form.Text className='text-danger'>{errors.propertyAddress}</Form.Text>
 
-          <FormButton className='my-1' type={"submit"} label={"Add Property"} />
+            <Input
+              name='propertyType'
+              label='Property Type'
+              inputType='text'
+              value={inputValue.propertyType}
+              handleInputChange={handleInputChange}
+              placeholder='Enter Property Type eg. Flat, House etc'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.propertyType}</Form.Text>
+
+            <Input
+              name='numOfBedroom'
+              label='Bedrooms'
+              inputType='number'
+              value={inputValue.numOfBedroom}
+              handleInputChange={handleInputChange}
+              placeholder='Enter Number of Bedrooms'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.numOfBedroom}</Form.Text>
+
+            <Input
+              name='numOfSittingRoom'
+              label='Sitting Room'
+              inputType='number'
+              value={inputValue.numOfSittingRoom}
+              handleInputChange={handleInputChange}
+              placeholder='Enter Number of Sitting Room'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.numOfSittingRoom}</Form.Text>
+
+            <Input
+              name='numOfKitchen'
+              label='Ktchen'
+              inputType='number'
+              value={inputValue.numOfKitchen}
+              handleInputChange={handleInputChange}
+              placeholder='Enter Number of Kitchen'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.numOfKitchen}</Form.Text>
+
+            <Input
+              name='numOfBathroom'
+              label='Bathroom'
+              inputType='number'
+              value={inputValue.numOfBathroom}
+              handleInputChange={handleInputChange}
+              placeholder='Enter Number of Bathroom'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.numOfBathroom}</Form.Text>
+
+            <Input
+              name='numOfToilets'
+              label='Toilets'
+              inputType='number'
+              value={inputValue.numOfToilets}
+              handleInputChange={handleInputChange}
+              placeholder='Enter Number of Toilets'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.numOfToilets}</Form.Text>
+
+            <Input
+              name='propertyOwner'
+              label='Property Owner'
+              inputType='text'
+              value={inputValue.propertyOwner}
+              handleInputChange={handleInputChange}
+              placeholder='Enter Property Owner'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.propertyOwner}</Form.Text>
+
+            <Input
+              name='propertyDescription'
+              label='Property Description'
+              inputType='text'
+              value={inputValue.propertyDescription}
+              handleInputChange={handleInputChange}
+              placeholder='Enter Property Description'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.propertyDescription}</Form.Text>
+
+            <Input
+              name='validFrom'
+              label='Valid From'
+              inputType='date'
+              value={inputValue.validFrom}
+              handleInputChange={handleInputChange}
+              placeholder='Valid From'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.validFrom}</Form.Text>
+
+            <Input
+              name='validTo'
+              label='Valid To'
+              inputType='date'
+              value={inputValue.validTo}
+              handleInputChange={handleInputChange}
+              placeholder='Valid To'
+              required
+            />
+            <Form.Text className='text-danger'>{errors.validTo}</Form.Text>
+
+            <div className='my-3'>
+              <label htmlFor="images" className='form-label'>Upload Property Image</label>
+              <input
+                className='form-control'
+                name='images'
+                type='file'
+                onChange={handleInputChange}
+                accept='.jpg,.png,.jpeg'
+                multiple
+              />
+            </div>
+
+            <FormButton className='my-1' type={"submit"} label={"Add Property"} />
+          </Col>
         </Row>
       </Form>
     </>
