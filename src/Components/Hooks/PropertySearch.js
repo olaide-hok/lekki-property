@@ -1,14 +1,12 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import Container  from 'react-bootstrap/Container'
 
 function PropertySearch({ params, onParamChange}) {
   return (
     <>
-    <Container>
     <Form className='mb-4 row row-cols-2'>
     <Form.Group className="col">
-    <Form.Label>Sitting Room</Form.Label>
+    <Form.Label className='mt-2'>Sitting Room</Form.Label>
     <Form.Control
       name='sittingRoom'
       type='text'
@@ -18,7 +16,7 @@ function PropertySearch({ params, onParamChange}) {
     </Form.Group>
 
     <Form.Group className="col">
-    <Form.Label>Kitchen</Form.Label>
+    <Form.Label className='mt-2'>Kitchen</Form.Label>
     <Form.Control
       name='kitchen'
       type='text'
@@ -28,7 +26,7 @@ function PropertySearch({ params, onParamChange}) {
     </Form.Group>
 
     <Form.Group className="col">
-    <Form.Label>Bedroom</Form.Label>
+    <Form.Label className='mt-2'>Bedroom</Form.Label>
     <Form.Control
       name='bedroom'
       type='text'
@@ -38,7 +36,7 @@ function PropertySearch({ params, onParamChange}) {
     </Form.Group>
 
     <Form.Group className="col">
-    <Form.Label>Bathroom</Form.Label>
+    <Form.Label className='mt-2'>Bathroom</Form.Label>
     <Form.Control
       name='bathroom'
       type='text'
@@ -48,7 +46,7 @@ function PropertySearch({ params, onParamChange}) {
     </Form.Group>
 
     <Form.Group className="col">
-    <Form.Label>Toilet</Form.Label>
+    <Form.Label className='mt-2'>Toilet</Form.Label>
     <Form.Control
       name='toilet'
       type='text'
@@ -58,7 +56,7 @@ function PropertySearch({ params, onParamChange}) {
     </Form.Group>
 
     <Form.Group className="col">
-    <Form.Label>Property Owner</Form.Label>
+    <Form.Label className='mt-2'>Property Owner</Form.Label>
     <Form.Control
       name='propertyOwner'
       type='text'
@@ -67,7 +65,6 @@ function PropertySearch({ params, onParamChange}) {
       placeholder="Property Owner" />
     </Form.Group>    
     </Form>
-    </Container>
 
     </>
   )

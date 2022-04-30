@@ -18,10 +18,10 @@ function Home() {
        </p>
       <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <Link to='addproperty'>
-          <button className="btn btn-outline-dark btn-lg px-4"> Add Your Property</button>
+          <button className="btn btn-outline-dark btn-lg"> Add Your Property</button>
         </Link>
         <Link to='listproperty'>
-          <button className="btn btn-outline-dark btn-lg px-4">View Available Properties</button>
+          <button className="btn btn-outline-dark btn-lg">View Available Properties</button>
         </Link>
       </div>
     </div>
