@@ -3,6 +3,8 @@ import axios from 'axios'
 import { Form, Row } from 'react-bootstrap';
 import FormButton from '../Layouts/FormButton';
 import Input from '../Layouts/Input'
+import validateForm from './ValidateForm';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const LEKKI_API_URL = 'https://sfc-lekki-property.herokuapp.com/api/v1/lekki/property'
 
@@ -21,7 +23,7 @@ function Addproperty() {
       propertyDescription: '',
       validFrom: '',
       validTo: '',
-      images: ''
+      images: []
     }
   )
 
@@ -58,92 +60,57 @@ function Addproperty() {
 
   };
 
-  const validateForm = () => {
-    const {
-      propertyAddress,
-      propertyType,
-      numOfBedroom,
-      numOfSittingRoom,
-      numOfKitchen,
-      numOfBathroom,
-      numOfToilets,
-      propertyOwner,
-      propertyDescription,
-      validFrom,
-      validTo,
-      images
-    } = inputValue
+  const {
+    propertyAddress,
+    propertyType,
+    numOfBedroom,
+    numOfSittingRoom,
+    numOfKitchen,
+    numOfBathroom,
+    numOfToilets,
+    propertyOwner,
+    propertyDescription,
+    validFrom,
+    validTo,
+    images
+  } = inputValue
 
-    const newErrors = {}
-
-    if (!propertyAddress || propertyAddress === '') {
-      newErrors.propertyAddress = 'Please Enter Property Address.'
-    }
-    if (!propertyType || propertyType === '') {
-      newErrors.propertyType = 'Please Enter Property Type.'
-    }
-    if (!propertyOwner || propertyOwner === '') {
-      newErrors.propertyOwner = 'Please Enter Property Owner.'
-    }
-    if (!propertyDescription || propertyDescription === '') {
-      newErrors.propertyDescription = 'Please Enter Property Description.'
-    }
-    if (!numOfBedroom || numOfBedroom === 0 || numOfBedroom < 0) {
-      newErrors.numOfBedroom = 'Please Enter Valid Numbers of Bedroom.'
-    }
-    if (!numOfSittingRoom || numOfSittingRoom === 0 || numOfSittingRoom < 0) {
-      newErrors.numOfSittingRoom = 'Please Enter Valid Numbers of Sitting Room.'
-    }
-    if (!numOfKitchen || numOfKitchen === 0 || numOfKitchen < 0) {
-      newErrors.numOfKitchen = 'Please Enter Valid Numbers of Kitchen.'
-    }
-    if (!numOfBathroom || numOfBathroom === 0 || numOfBathroom < 0) {
-      newErrors.numOfBathroom = 'Please Enter Valid Numbers of Bathroom.'
-    }
-    if (!numOfToilets || numOfToilets === 0 || numOfToilets < 0) {
-      newErrors.numOfToilets = 'Please Enter Valid Numbers of Toilet.'
-    }
-    if (!validFrom) {
-      newErrors.validFrom = 'Please Enter Valid From Date.'
-    } else if (validFrom > validTo) {
-      newErrors.validFrom = 'Please ensure Valid From Date is earlier than Valid To date.'
-    }
-    if (!validTo) {
-      newErrors.validTo = 'Please Enter Valid To Date.'
-    } else if (validTo < validFrom) {
-      newErrors.validFrom = 'Please ensure Valid To Date is not earlier than valid From date.'
-    }
-    if (!images.length === 0) {
-      newErrors.images = 'Please Add Property Image with extensions png, jpg, jpeg'
-    }
-
-    return newErrors
-  }
+  let navigate = useNavigate();
 
   // Handles Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const formErrors = validateForm()
+    const formErrors = validateForm(inputValue)
 
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors)
       console.log(formErrors);
-
     } else {
       console.log(inputValue);
     }
 
-    axios.post(
-      LEKKI_API_URL,
-      inputValue
-    )
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    try {
+      const response = await axios.post(LEKKI_API_URL,
+        {
+          "address": propertyAddress,
+          "type": propertyType,
+          "bedroom": numOfBedroom,
+          "sittingRoom": numOfSittingRoom,
+          "kitchen": numOfKitchen,
+          "bathroom": numOfBathroom,
+          "toilet": numOfToilets,
+          "propertyOwner": propertyOwner,
+          "description": propertyDescription,
+          "validFrom": validFrom,
+          "validTo": validTo,
+          "images": images
+        })
+      console.log(response.data);
+      navigate('/success')
+    } catch (error) {
+      console.log(error.response);
+    }
   }
 
   return (
@@ -184,7 +151,6 @@ function Addproperty() {
           />
           <Form.Text className='text-danger'>{errors.numOfBedroom}</Form.Text>
 
-
           <Input
             name='numOfSittingRoom'
             label='Sitting Room'
@@ -195,7 +161,6 @@ function Addproperty() {
             required
           />
           <Form.Text className='text-danger'>{errors.numOfSittingRoom}</Form.Text>
-
 
           <Input
             name='numOfKitchen'
@@ -282,9 +247,8 @@ function Addproperty() {
               type='file'
               onChange={handleInputChange}
               accept='.jpg,.png,.jpeg'
-              multiple              
+              multiple
             />
-            <Form.Text className='text-danger'>{errors.images}</Form.Text>
           </div>
 
           <FormButton className='my-1' type={"submit"} label={"Add Property"} />
