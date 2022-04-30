@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Container } from 'react-bootstrap'
 import PropertySearch from '../Hooks/PropertySearch'
 import useFetchProperty from '../LekkiAPI/useFetchProperty'
 import PropertyInfo from './PropertyInfo'
-import api from '../LekkiAPI/api'
 
 function ListProperty() {
     const [params, setParams] = useState({})

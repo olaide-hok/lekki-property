@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Container, Form, Row } from 'react-bootstrap';
+import { Form, Row } from 'react-bootstrap';
 import FormButton from '../Layouts/FormButton';
 import Input from '../Layouts/Input'
 
@@ -21,25 +21,25 @@ function Addproperty() {
       propertyDescription: '',
       validFrom: '',
       validTo: '',
-      images: {}
+      images: ''
     }
   )
 
   const [errors, setErrors] = useState({})
-  const setField = (field, value) => {
+  // const setField = (field, value) => {
 
-    setInputValue(prevInputValue => ({
-      ...prevInputValue,
-      [field]: value
-    }))
+  //   setInputValue(prevInputValue => ({
+  //     ...prevInputValue,
+  //     [field]: value
+  //   }))
 
-    if (!!errors[field]) {
-      setErrors({
-        ...errors,
-        [field]: null
-      })
-    }
-  }
+  //   if (!!errors[field]) {
+  //     setErrors({
+  //       ...errors,
+  //       [field]: null
+  //     })
+  //   }
+  // }
   // Handles input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -71,6 +71,7 @@ function Addproperty() {
       propertyDescription,
       validFrom,
       validTo,
+      images
     } = inputValue
 
     const newErrors = {}
@@ -103,14 +104,17 @@ function Addproperty() {
       newErrors.numOfToilets = 'Please Enter Valid Numbers of Toilet.'
     }
     if (!validFrom) {
-      newErrors.validFrom = 'Please Enter Valid from date.'
+      newErrors.validFrom = 'Please Enter Valid From Date.'
     } else if (validFrom > validTo) {
-      newErrors.validFrom = 'Please ensure Valid From date is earlier than Valid To date.'
+      newErrors.validFrom = 'Please ensure Valid From Date is earlier than Valid To date.'
     }
     if (!validTo) {
-      newErrors.validTo = 'Please Enter Valid To date.'
+      newErrors.validTo = 'Please Enter Valid To Date.'
     } else if (validTo < validFrom) {
-      newErrors.validFrom = 'Please ensure Valid To date is not earlier than valid From date.'
+      newErrors.validFrom = 'Please ensure Valid To Date is not earlier than valid From date.'
+    }
+    if (!images.length === 0) {
+      newErrors.images = 'Please Add Property Image with extensions png, jpg, jpeg'
     }
 
     return newErrors
@@ -270,7 +274,7 @@ function Addproperty() {
           />
           <Form.Text className='text-danger'>{errors.validTo}</Form.Text>
 
-          {/* <div className='my-3'>
+          <div className='my-3'>
             <label htmlFor="images" className='form-label'>Upload Property Image</label>
             <input
               className='form-control'
@@ -278,12 +282,12 @@ function Addproperty() {
               type='file'
               onChange={handleInputChange}
               accept='.jpg,.png,.jpeg'
-              multiple
-              required
+              multiple              
             />
-          </div> */}
+            <Form.Text className='text-danger'>{errors.images}</Form.Text>
+          </div>
 
-          <FormButton type={"submit"} label={"Add Property"} />
+          <FormButton className='my-1' type={"submit"} label={"Add Property"} />
         </Row>
       </Form>
     </>
