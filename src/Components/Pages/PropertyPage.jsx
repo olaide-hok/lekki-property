@@ -2,59 +2,33 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
-// import api from '../LekkiAPI/api'
-import axios from 'axios'
+import api from '../LekkiAPI/api'
 
-const baseURL = 'https://sfc-lekki-property.herokuapp.com/api'
 function PropertyPage() {
   const { id } = useParams()
-  console.log(id);
   const [property, setProperty] = useState({})
 
-  // const fetchProperty = async () => {
-  //   try {
-  //     const response = await api.get(`/v1/lekki/property/${id}`).then()
-  //     const { data } = response.data
-  //     setProperty(data)
-  //     console.log(data);
-  //     console.log(property);
-  //     // console.log(response.data.message);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //     console.log(error.response.status);
-  //   }
-  // }
+  const fetchProperty = async (id) => {
+    try {
+      const response = await api.get(`/v1/lekki/property/${id}`)
+      const { data } = response.data
+      setProperty(data)
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   useEffect(() => {
-    // fetchProperty()
-    axios
-      .get(`${baseURL}/v1/lekki/property/${id}`)
-      .then(res => {
-        console.log(res.data.data);
-        // const property = res.data.data
-        setProperty(res.data.data)
-        console.log(property);
-        return property
-      })
-      .catch(err => {
-        console.log(err.message);
-      })
-
+    fetchProperty(id)
   }, [])
 
   return (
     <>
-    
-      <h1 className='vh-100'>
-        Property Page {property.type}
-      </h1>
-
-      <div>eyidfai {property.type} </div>
-
-      {property && <Card className='h-100'>
+      {Object.values(property) !== 0 && (<Card className='vh-100'>
         <Card.Img variant="" src="" />
         <Card.Body>
-          {/* <Card.Title>{property.type.toUpperCase()}</Card.Title> */}
+          <Card.Title>Property Details</Card.Title>
+          <Card.Text>Property Type: {(property.type)}</Card.Text>
           <Card.Text> Description: {property.description} </Card.Text>
           <Card.Text> Address: {property.address} </Card.Text>
           <Card.Text> Owner: {property.propertyOwner} </Card.Text>
@@ -68,7 +42,7 @@ function PropertyPage() {
           </ListGroup>
 
         </Card.Body>
-      </Card>}
+      </Card>)}
     </>
 
   )
