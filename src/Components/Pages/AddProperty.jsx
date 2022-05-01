@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { Col, Form, Row } from 'react-bootstrap';
 import FormButton from '../Layouts/FormButton';
 import Input from '../Layouts/Input'
 import validateForm from './ValidateForm';
 import { useNavigate } from 'react-router-dom';
-
-const LEKKI_API_URL = 'https://sfc-lekki-property.herokuapp.com/api/v1/lekki/property'
+import api from '../LekkiAPI/api'
 
 function Addproperty() {
 
@@ -26,22 +24,10 @@ function Addproperty() {
       images: []
     }
   )
-
+  
+  // Handles Error State
   const [errors, setErrors] = useState({})
-  // const setField = (field, value) => {
-
-  //   setInputValue(prevInputValue => ({
-  //     ...prevInputValue,
-  //     [field]: value
-  //   }))
-
-  //   if (!!errors[field]) {
-  //     setErrors({
-  //       ...errors,
-  //       [field]: null
-  //     })
-  //   }
-  // }
+  
   // Handles input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -57,7 +43,6 @@ function Addproperty() {
         [name]: null
       })
     }
-
   };
 
   const {
@@ -91,7 +76,7 @@ function Addproperty() {
     }
 
     try {
-      const response = await axios.post(LEKKI_API_URL,
+      const response = await api.post('v1/lekki/property',
         {
           "address": propertyAddress,
           "type": propertyType,
@@ -245,14 +230,25 @@ function Addproperty() {
 
             <div className='my-3'>
               <label htmlFor="images" className='form-label'>Upload Property Image</label>
+              <div className='input-group'>
               <input
                 className='form-control'
                 name='images'
                 type='file'
-                onChange={handleInputChange}
+                onChange={(e) => {
+                  console.log(e.target.files)
+                }}
                 accept='.jpg,.png,.jpeg'
                 multiple
               />
+              <button 
+                className="btn btn-outline-dark" 
+                type="button"
+              >
+                Upload
+              </button>
+              </div>
+
             </div>
 
             <FormButton className='my-1' type={"submit"} label={"Add Property"} />
