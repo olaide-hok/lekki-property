@@ -8,7 +8,6 @@ function ListProperty() {
     const [params, setParams] = useState({})
 
     const { properties, loading, error } = useFetchProperty(params)
-    console.log(properties);
 
     function handleParamChange(e) {
         const param = e.target.name
@@ -17,22 +16,6 @@ function ListProperty() {
             return { ...prevParams, [param]: value }
         })
     }
-
-    // useEffect(() => {
-    //     const fetchProperties = async () => {
-
-    //         try {
-    //             const response = await api.get('/v1/lekki/property')
-    //             console.log(response.data.data);
-
-    //         } catch (error) {
-    //             console.log(error.message);
-    //             console.log(error.response.status);
-    //         }
-    //     }
-
-    //     fetchProperties();
-    // }, [])
 
     return (
         <>

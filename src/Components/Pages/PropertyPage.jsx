@@ -7,7 +7,17 @@ import { Button, Container } from 'react-bootstrap'
 
 function PropertyPage() {
   const { id } = useParams()
-  const [property, setProperty] = useState({})
+  const [property, setProperty] = useState({
+    type: '',
+    description: '',
+    address: '',
+    propertyOwner: '',
+    bedroom: '',
+    sittingRoom: '',
+    kitchen: '',
+    bathroom: '',
+    toilet: ''
+  })
 
   const fetchProperty = async (id) => {
     try {
@@ -22,7 +32,6 @@ function PropertyPage() {
   const navigate = useNavigate()
 
   const updateProperty = (id) => {
-    console.log(id);
     navigate(`updateproperty/${id}`)
   }
 
@@ -47,7 +56,7 @@ function PropertyPage() {
   return (
     <Container className='vh-100'>
       {Object.values(property) !== 0 && (<Card className='h-100' >
-        <Card.Img variant="" src="" />
+        <Card.Img/>
         <Card.Body>
           <Card.Title>Property Details</Card.Title>
           <Card.Text>Property Type: {type}</Card.Text>

@@ -82,10 +82,10 @@ function Addproperty() {
 
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors)
-      console.log(formErrors);
-    } else {
-      console.log(inputValue);
-    }
+    } 
+    // else {
+    //   console.log(inputValue);
+    // }
 
     try {
       const response = await api.post('v1/lekki/property',
@@ -262,7 +262,6 @@ function Addproperty() {
               </div>
 
             </div>
-
             <FormButton className='my-1' type={"submit"} label={"Add Property"} />
           </Col>
         </Row>

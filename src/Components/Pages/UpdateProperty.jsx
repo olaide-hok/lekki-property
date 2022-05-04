@@ -17,7 +17,6 @@ function UpdateProperty() {
             toilet: '',
             propertyDescription: '',
             validTo: '',
-            images: []
         }
     )
 
@@ -64,13 +63,11 @@ function UpdateProperty() {
 
     let navigate = useNavigate();
     const { id } = useParams()
-    console.log(id);
 
     const fetchProperty = async (id) => {
         try {
             const response = await api.get(`/v1/lekki/property/${id}`)
             const { data } = response.data
-            console.log(data);
             setUpdatePropValue(data)
         } catch (error) {
             console.log(error.message);
@@ -85,15 +82,14 @@ function UpdateProperty() {
     // Handles Form Submission
     const handleUpdateSubmit = async (e) => {
         e.preventDefault()
-        console.log(id);
 
         const formErrors = validateForm(updatePropValue)
 
         if (Object.keys(formErrors).length > 0) {
             setErrors(formErrors)
-            console.log(formErrors);
+            // console.log(formErrors);
         } else {
-            console.log(updatePropValue);
+            // console.log(updatePropValue);
         }
 
         try {
@@ -107,7 +103,7 @@ function UpdateProperty() {
                     "description": description,
                     "validTo": validTo,
                 })
-            console.log(response.data);
+            console.log(response.data.message);
             navigate('/success')
         } catch (error) {
             console.log(error.response);
