@@ -10,24 +10,36 @@ function Addproperty() {
 
   const [inputValue, setInputValue] = useState(
     {
-      propertyAddress: '',
-      propertyType: '',
-      numOfBedroom: '',
-      numOfSittingRoom: '',
-      numOfKitchen: '',
-      numOfBathroom: '',
-      numOfToilets: '',
+      address: '',
+      type: '',
+      bedroom: '',
+      sittingRoom: '',
+      kitchen: '',
+      bathroom: '',
+      toilet: '',
       propertyOwner: '',
-      propertyDescription: '',
+      description: '',
       validFrom: '',
       validTo: '',
       images: []
     }
   )
-  
+
   // Handles Error State
-  const [errors, setErrors] = useState({})
-  
+  const [errors, setErrors] = useState({
+    address: '',
+    type: '',
+    bedroom: '',
+    sittingRoom: '',
+    kitchen: '',
+    bathroom: '',
+    toilet: '',
+    propertyOwner: '',
+    description: '',
+    validFrom: '',
+    validTo: '',
+  })
+
   // Handles input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -46,15 +58,15 @@ function Addproperty() {
   };
 
   const {
-    propertyAddress,
-    propertyType,
-    numOfBedroom,
-    numOfSittingRoom,
-    numOfKitchen,
-    numOfBathroom,
-    numOfToilets,
+    address,
+    type,
+    bedroom,
+    sittingRoom,
+    kitchen,
+    bathroom,
+    toilet,
     propertyOwner,
-    propertyDescription,
+    description,
     validFrom,
     validTo,
     images
@@ -78,15 +90,15 @@ function Addproperty() {
     try {
       const response = await api.post('v1/lekki/property',
         {
-          "address": propertyAddress,
-          "type": propertyType,
-          "bedroom": numOfBedroom,
-          "sittingRoom": numOfSittingRoom,
-          "kitchen": numOfKitchen,
-          "bathroom": numOfBathroom,
-          "toilet": numOfToilets,
+          "address": address,
+          "type": type,
+          "bedroom": bedroom,
+          "sittingRoom": sittingRoom,
+          "kitchen": kitchen,
+          "bathroom": bathroom,
+          "toilet": toilet,
           "propertyOwner": propertyOwner,
-          "description": propertyDescription,
+          "description": description,
           "validFrom": validFrom,
           "validTo": validTo,
           "images": images
@@ -107,10 +119,10 @@ function Addproperty() {
             <h1>Add Property Details</h1>
 
             <Input
-              name='propertyAddress'
+              name='address'
               label='Property Address'
               inputType='text'
-              value={inputValue.propertyAddress}
+              value={address}
               handleInputChange={handleInputChange}
               placeholder='Enter Property Address'
               required
@@ -119,10 +131,10 @@ function Addproperty() {
             <Form.Text className='text-danger'>{errors.propertyAddress}</Form.Text>
 
             <Input
-              name='propertyType'
+              name='type'
               label='Property Type'
               inputType='text'
-              value={inputValue.propertyType}
+              value={type}
               handleInputChange={handleInputChange}
               placeholder='Enter Property Type eg. Flat, House etc'
               required
@@ -130,10 +142,10 @@ function Addproperty() {
             <Form.Text className='text-danger'>{errors.propertyType}</Form.Text>
 
             <Input
-              name='numOfBedroom'
+              name='bedroom'
               label='Bedrooms'
               inputType='number'
-              value={inputValue.numOfBedroom}
+              value={bedroom}
               handleInputChange={handleInputChange}
               placeholder='Enter Number of Bedrooms'
               required
@@ -141,10 +153,10 @@ function Addproperty() {
             <Form.Text className='text-danger'>{errors.numOfBedroom}</Form.Text>
 
             <Input
-              name='numOfSittingRoom'
+              name='sittingRoom'
               label='Sitting Room'
               inputType='number'
-              value={inputValue.numOfSittingRoom}
+              value={sittingRoom}
               handleInputChange={handleInputChange}
               placeholder='Enter Number of Sitting Room'
               required
@@ -152,10 +164,10 @@ function Addproperty() {
             <Form.Text className='text-danger'>{errors.numOfSittingRoom}</Form.Text>
 
             <Input
-              name='numOfKitchen'
-              label='Ktchen'
+              name='kitchen'
+              label='Kitchen'
               inputType='number'
-              value={inputValue.numOfKitchen}
+              value={kitchen}
               handleInputChange={handleInputChange}
               placeholder='Enter Number of Kitchen'
               required
@@ -163,10 +175,10 @@ function Addproperty() {
             <Form.Text className='text-danger'>{errors.numOfKitchen}</Form.Text>
 
             <Input
-              name='numOfBathroom'
+              name='bathroom'
               label='Bathroom'
               inputType='number'
-              value={inputValue.numOfBathroom}
+              value={bathroom}
               handleInputChange={handleInputChange}
               placeholder='Enter Number of Bathroom'
               required
@@ -174,10 +186,10 @@ function Addproperty() {
             <Form.Text className='text-danger'>{errors.numOfBathroom}</Form.Text>
 
             <Input
-              name='numOfToilets'
+              name='toilet'
               label='Toilets'
               inputType='number'
-              value={inputValue.numOfToilets}
+              value={toilet}
               handleInputChange={handleInputChange}
               placeholder='Enter Number of Toilets'
               required
@@ -196,10 +208,10 @@ function Addproperty() {
             <Form.Text className='text-danger'>{errors.propertyOwner}</Form.Text>
 
             <Input
-              name='propertyDescription'
+              name='description'
               label='Property Description'
               inputType='text'
-              value={inputValue.propertyDescription}
+              value={description}
               handleInputChange={handleInputChange}
               placeholder='Enter Property Description'
               required
@@ -231,22 +243,22 @@ function Addproperty() {
             <div className='my-3'>
               <label htmlFor="images" className='form-label'>Upload Property Image</label>
               <div className='input-group'>
-              <input
-                className='form-control'
-                name='images'
-                type='file'
-                onChange={(e) => {
-                  console.log(e.target.files)
-                }}
-                accept='.jpg,.png,.jpeg'
-                multiple
-              />
-              <button 
-                className="btn btn-outline-dark" 
-                type="button"
-              >
-                Upload
-              </button>
+                <input
+                  className='form-control'
+                  name='images'
+                  type='file'
+                  onChange={(e) => {
+                    console.log(e.target.files)
+                  }}
+                  accept='.jpg,.png,.jpeg'
+                  multiple
+                />
+                <button
+                  className="btn btn-outline-dark"
+                  type="button"
+                >
+                  Upload
+                </button>
               </div>
 
             </div>

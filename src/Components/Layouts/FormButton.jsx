@@ -6,7 +6,7 @@ function FormButton({type, label}) {
     <Button
         type={type}
         variant='dark'
-        className='bg-gradient mb-3'  
+        className='bg-gradient my-3'  
     >
         {label}
     </Button>

@@ -1,46 +1,46 @@
 const validateForm = (inputValue) => {
     const {
-      propertyAddress,
-      propertyType,
-      numOfBedroom,
-      numOfSittingRoom,
-      numOfKitchen,
-      numOfBathroom,
-      numOfToilets,
+      address,
+      type,
+      bedroom,
+      sittingRoom,
+      kitchen,
+      bathroom,
+      toilet,
       propertyOwner,
-      propertyDescription,
+      description,
       validFrom,
       validTo,
     } = inputValue
 
     const newErrors = {}
 
-    if (!propertyAddress || propertyAddress === '') {
-      newErrors.propertyAddress = 'Please Enter Property Address.'
+    if (!address || address === '') {
+      newErrors.address = 'Please Enter Property Address.'
     }
-    if (!propertyType || propertyType === '') {
-      newErrors.propertyType = 'Please Enter Property Type.'
+    if (!type || type === '') {
+      newErrors.type = 'Please Enter Property Type.'
     }
     if (!propertyOwner || propertyOwner === '') {
       newErrors.propertyOwner = 'Please Enter Property Owner.'
     }
-    if (!propertyDescription || propertyDescription === '') {
-      newErrors.propertyDescription = 'Please Enter Property Description.'
+    if (!description || description === '') {
+      newErrors.description = 'Please Enter Property Description.'
     }
-    if (!numOfBedroom || numOfBedroom === 0 || numOfBedroom < 0) {
-      newErrors.numOfBedroom = 'Please Enter Valid Numbers of Bedroom.'
+    if (!bedroom || bedroom === 0 || bedroom < 0) {
+      newErrors.bedroom = 'Please Enter Valid Numbers of Bedroom.'
     }
-    if (!numOfSittingRoom || numOfSittingRoom === 0 || numOfSittingRoom < 0) {
-      newErrors.numOfSittingRoom = 'Please Enter Valid Numbers of Sitting Room.'
+    if (!sittingRoom || sittingRoom === 0 || sittingRoom < 0) {
+      newErrors.sittingRoom = 'Please Enter Valid Numbers of Sitting Room.'
     }
-    if (!numOfKitchen || numOfKitchen === 0 || numOfKitchen < 0) {
-      newErrors.numOfKitchen = 'Please Enter Valid Numbers of Kitchen.'
+    if (!kitchen || kitchen === 0 || kitchen < 0) {
+      newErrors.kitchen = 'Please Enter Valid Numbers of Kitchen.'
     }
-    if (!numOfBathroom || numOfBathroom === 0 || numOfBathroom < 0) {
-      newErrors.numOfBathroom = 'Please Enter Valid Numbers of Bathroom.'
+    if (!bathroom || bathroom === 0 || bathroom < 0) {
+      newErrors.bathroom = 'Please Enter Valid Numbers of Bathroom.'
     }
-    if (!numOfToilets || numOfToilets === 0 || numOfToilets < 0) {
-      newErrors.numOfToilets = 'Please Enter Valid Numbers of Toilet.'
+    if (!toilet || toilet === 0 || toilet < 0) {
+      newErrors.toilet = 'Please Enter Valid Numbers of Toilet.'
     }
     if (!validFrom) {
       newErrors.validFrom = 'Please Enter Valid From Date.'

@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container'
 function Header() {
   return (
 
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" className='bg-gradient'>
       <Container>
         <Navbar.Brand > <h1>Lekki Property Inc. </h1> </Navbar.Brand>
         <Nav className="me-2 justify-content-end">

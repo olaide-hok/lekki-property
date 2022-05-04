@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import api from '../LekkiAPI/api'
+import { Button, Container } from 'react-bootstrap'
 
 function PropertyPage() {
   const { id } = useParams()
@@ -18,32 +19,60 @@ function PropertyPage() {
     }
   }
 
+  const navigate = useNavigate()
+
+  const updateProperty = (id) => {
+    console.log(id);
+    navigate(`updateproperty/${id}`)
+  }
+
   useEffect(() => {
     fetchProperty(id)
   }, [])
 
+  const {
+    type,
+    description,
+    address,
+    propertyOwner,
+    bedroom,
+    sittingRoom,
+    kitchen,
+    bathroom,
+    toilet
+  } = property
+
+
+
   return (
-    <>
-      {Object.values(property) !== 0 && (<Card className='vh-100'>
+    <Container className='vh-100'>
+      {Object.values(property) !== 0 && (<Card className='h-100' >
         <Card.Img variant="" src="" />
         <Card.Body>
           <Card.Title>Property Details</Card.Title>
-          <Card.Text>Property Type: {(property.type)}</Card.Text>
-          <Card.Text> Description: {property.description} </Card.Text>
-          <Card.Text> Address: {property.address} </Card.Text>
-          <Card.Text> Owner: {property.propertyOwner} </Card.Text>
+          <Card.Text>Property Type: {type}</Card.Text>
+          <Card.Text> Description: {description} </Card.Text>
+          <Card.Text> Address: {address} </Card.Text>
+          <Card.Text> Owner: {propertyOwner} </Card.Text>
 
           <ListGroup className="mt-4">
-            <ListGroup.Item>Bedroom: {property.bedroom} </ListGroup.Item>
-            <ListGroup.Item>Sitting Room: {property.sittingRoom}</ListGroup.Item>
-            <ListGroup.Item>Kitchen: {property.kitchen} </ListGroup.Item>
-            <ListGroup.Item>Bathroom: {property.bathroom} </ListGroup.Item>
-            <ListGroup.Item>Toilet: {property.toilet} </ListGroup.Item>
+            <ListGroup.Item>Bedroom: {bedroom} </ListGroup.Item>
+            <ListGroup.Item>Sitting Room: {sittingRoom}</ListGroup.Item>
+            <ListGroup.Item>Kitchen: {kitchen} </ListGroup.Item>
+            <ListGroup.Item>Bathroom: {bathroom} </ListGroup.Item>
+            <ListGroup.Item>Toilet: {toilet} </ListGroup.Item>
           </ListGroup>
 
+          <Button
+            variant='outline-dark'
+            className='mt-4'
+            onClick={() => updateProperty(id)}
+          >
+            Click to Update Property
+          </Button>
         </Card.Body>
       </Card>)}
-    </>
+    </Container>
 
   )
 }

@@ -7,6 +7,7 @@ import Home from './Components/Pages/Home';
 import ListProperty from './Components/Pages/ListProperty';
 import PropertyPage from './Components/Pages/PropertyPage';
 import Success from './Components/Pages/Success';
+import UpdateProperty from './Components/Pages/UpdateProperty';
 
 function App() {
   return (
@@ -18,12 +19,7 @@ function App() {
           <Route path='addproperty' element={<AddProperty />}  />
           <Route path='listproperty' element={<ListProperty />}/>
           <Route path='listproperty/:id' element={<PropertyPage />}  />
-
-          {/* </Route> */}
-
-
-
-
+          <Route path='listproperty/:id/updateproperty/:id' element={<UpdateProperty />}  />
 
           <Route path='success' element={<Success />}  />
 
